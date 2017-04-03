@@ -76,7 +76,7 @@ func recursiveFlatten(val reflect.Value, prefix string, output Map) int {
 
 		key, anonymous := keyForField(childType, child)
 
-		if childType.PkgPath != "" || (key == "" && !anonymous) {
+		if !childType.Anonymous && (childType.PkgPath != "" || key == "") {
 			continue
 		} else if !anonymous {
 			childPrefix = prefix + key + "."
